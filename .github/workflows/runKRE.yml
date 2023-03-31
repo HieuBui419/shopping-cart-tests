@@ -22,5 +22,8 @@ jobs:
         run: 7z x katalon_runtime_engine.zip
       - name: Run KRE
         env:
-          PROJECT_PATH: ${{ github.workspace }}
-        run: katalonc -noSplash -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
+          PROJECT_PATH: ${{ github.workspace }}/shopping-cart-tests.prj
+          KATALONC_PATH: $(pwd)/Katalon_Studio_Engine_Windows_64-8.5.5/katalonc
+        run: |
+          ls -al         
+          $KATALONC_PATH -noSplash -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
