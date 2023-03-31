@@ -1,0 +1,26 @@
+name: run KRE
+on:
+  push:
+    branches: KRE
+  pull_request:
+    branches: KRE
+    
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup JAVA JDK
+        uses: actions/setup-java@v1.4.4
+        with: 
+          distribution: 'zulu'
+          java-version: '8'
+      - name: Download KRE
+        run: curl https://download.katalon.com/8.5.5.DEV/KSR-2647/Katalon_Studio_Engine_Windows_64-8.5.5.zip -o katalon_runtime_engine.zip
+      - name: Extract KRE
+        run: 7z x katalon_runtime_engine.zip
+      - name: Run KRE
+        env:
+          PROJECT_PATH: ${{ github.workspace }}
+        run: katalonc -noSplash -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
