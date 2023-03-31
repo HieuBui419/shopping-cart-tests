@@ -20,11 +20,10 @@ jobs:
         run: curl https://download.katalon.com/8.5.5.DEV/KSR-2647/Katalon_Studio_Engine_Windows_64-8.5.5.zip -o katalon_runtime_engine.zip
       - name: Extract KRE
         run: 7z x katalon_runtime_engine.zip
+      - name: Show Dir
+        run: dir
       - name: Run KRE
         env:
           PROJECT_PATH: ${{ github.workspace }}/shopping-cart-tests.prj
           KATALONC_PATH: $(pwd)/Katalon_Studio_Engine_Windows_64-8.5.5/katalonc
-        run: |
-          dir
-          echo $KATALONC_PATH
-          $KATALONC_PATH -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
+        run: $KATALONC_PATH -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
