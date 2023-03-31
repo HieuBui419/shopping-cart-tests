@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup JAVA JDK
-        uses: actions/setup-java@v1.4.4
+        uses: actions/setup-java@v2
         with: 
           distribution: 'zulu'
           java-version: '8'
@@ -30,4 +30,4 @@ jobs:
           PROJECT_PATH: ${{ github.workspace }}
         run: |
           cd 'Katalon_Studio_Engine_Windows_64-8.5.5'
-          katalonc.exe -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
+          .\katalonc -runMode=console -projectPath=$PROJECT_PATH -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"
