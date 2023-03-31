@@ -30,4 +30,4 @@ jobs:
           PROJECT_PATH: ${{ github.workspace }}
         run: |
           cd 'Katalon_Studio_Engine_Windows_64-8.5.5'
-          .\katalonc -runMode=console -projectPath=${{ env.PROJECT_PATH }} -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey="555232dc-21e0-4567-8bd9-a7335fa67975"  --config -webui.autoUpdateDrivers=true
+          .\katalonc -runMode=console -projectPath=${{ env.PROJECT_PATH }} -retry=0 -testSuitePath="Test Suites/Order and check out with Global Variable" -browserType="Chrome" -executionProfile="default" -apiKey=${{ secrets.API_KEY }}  --config "-webui.autoUpdateDrivers=true"
