@@ -16,10 +16,21 @@ jobs:
         with: 
           distribution: 'zulu'
           java-version: '8'
-      - name: Download KRE
-        run: curl https://download.katalon.com/8.5.5.DEV/KSR-2647/Katalon_Studio_Engine_Windows_64-8.5.5.zip -o katalon_runtime_engine.zip
-      - name: Extract KRE
-        run: 7z x katalon_runtime_engine.zip
+      - name: Download & Extract
+        # You may pin to the exact commit or the version.
+        # uses: gamedev-thingy/Download-Extract@20063b5f6b2b847425c9e3ff02830b19bcb66d70
+        uses: gamedev-thingy/Download-Extract@done
+        with:
+          # The URL to download from
+          url: https://download.katalon.com/8.5.5.DEV/KSR-2647/Katalon_Studio_Engine_Windows_64-8.5.5.zip
+          # Where the files will be extracted to
+          destination: ${{ github.workspace }}
+          # Name of the downloaded ZIP file
+          ZIPname: Katalon_Studio_Engine_Windows_64-8.5.5.zip
+#       - name: Download KRE
+#         run: curl https://download.katalon.com/8.5.5.DEV/KSR-2647/Katalon_Studio_Engine_Windows_64-8.5.5.zip -o katalon_runtime_engine.zip
+#       - name: Extract KRE
+#         run: 7z x katalon_runtime_engine.zip
       - name: Show Dir
         run: |
           dir
